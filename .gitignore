@@ -32,4 +32,7 @@
 *.app
 
 # ignore build dir
-/out/
+/out/*
+
+# ignore special file
+L*.cpp

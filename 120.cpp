@@ -39,11 +39,7 @@ int minimumTotal(vector<vector<int>>& triangle) {
             }
         }
     }
-    int route = 0x7fffffff;
-    for (int i = 0; i < size; i++) {
-        route = min(route, dp[size - 1][i]);
-    }
-    return route;
+    return *min_element(dp[size - 1].begin(), dp[size - 1].end());
 }
 
 int main()
