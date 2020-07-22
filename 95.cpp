@@ -41,18 +41,6 @@ vector<TreeNode *> generateTrees(int n)
     }
     return buildTree(1, n);
 }
-
-TreeNode* transfer(TreeNode* node, int offset) {
-    if (!node) {
-        return nullptr;
-    }
-    TreeNode* cur = new TreeNode(offset + node->val);
-    cur->left = transfer(node->left, offset);
-    cur->right = transfer(node->right, offset);
-    return cur;
-}
-
-vector<TreeNode *> generateTrees2(int n)
 {
     if (!n) {
         return vector<TreeNode*>();
