@@ -1,77 +1,55 @@
 #include <iostream>
 #include <stack>
 #include <algorithm>
+#include <cctype>
+#include <string>
 using namespace std;
 
-bool isnumber(char i)
-{
-    return i >= '0' && i <= '9';
-}
-
-bool isalpha(char i)
-{
-    return (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z');
-}
-
-void handleEnd(stack<int> &time, stack<char> &code)
-{
-    string temp;
-    int cnt = time.top();
-    time.pop();
-    while (code.top() != '[')
-    {
-        temp += code.top();
-        code.pop();
+int beg = 0;
+string loop(const string& s) {
+    int times = 0;
+    int size = s.size();
+    if (beg >= size) {
+        return "";
     }
-    code.pop();
-    reverse(temp.begin(), temp.end());
-    string cur;
-    for (int j = 0; j < cnt; j++)
-    {
-        cur += temp;
-    }
-    for (int j = 0; j < cur.size(); j++)
-    {
-        code.push(cur[j]);
-    }
-}
-
-string decodeString(string s)
-{
-    stack<int> time;
-    stack<char> code;
-    for (char i : s)
-    {
-        if (isnumber(i))
-        {
-            time.push(i - '0');
-        }
-        else if (isalpha(i) || i == '[')
-        {
-            code.push(i);
-        }
-        else
-        {
-            handleEnd(time, code);
-        }
-    }
-    if (!time.empty())
-    {
-        handleEnd(time, code);
+    while (isnumber(s[beg])) {
+        times = times * 10 + s[beg] - '0';
+        beg++;
     }
     string result;
-    while (!code.empty())
-    {
-        result += code.top();
-        code.pop();
+    if (times == 0) {
+        while (beg < size && isalpha(s[beg])) {
+            result += s[beg++];
+        }
+        return result;
+    } else {
+        ++beg;
+        while (beg < size && isalpha(s[beg])) {
+            result += s[beg++];
+        }
+        while (s[beg] != ']') {
+            result += loop(s);
+        }
+        ++beg;
+        string temp(result);
+        for (int i = 1; i < times; i++) {
+            result += temp;
+        }
+        return result;
     }
-    reverse(result.begin(), result.end());
+}
+
+string decodeString(string s) {
+    string result;
+    while (beg < s.size()) {
+        result += loop(s);
+    }
     return result;
 }
 
 int main()
 {
-    string s;
+    string s = "2[2[y]pq]";
     cin >> s;
     cout << decodeString(s) << endl;
     return 0;
