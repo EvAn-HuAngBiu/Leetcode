@@ -36,3 +36,6 @@
 
 # ignore special file
 L*.cpp
+
+# ignore shell command
+*.sh
