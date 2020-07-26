@@ -1,9 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
-#include <vector>
 #include <map>
-#include <cmath>
 using namespace std;
 
 class Solution {
