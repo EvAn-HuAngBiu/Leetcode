@@ -26,6 +26,7 @@ public:
             if (cur->val == pre->val) {
                 del = cur;
                 cur = cur->next;
+                pre->next = cur;
                 delete del;
             } else {
                 pre = cur;
@@ -38,7 +39,7 @@ public:
 
 int main()
 {
-    ListNode* head = new ListNode(1, new ListNode(1, new ListNode(2)));
+    ListNode* head = new ListNode(1, new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(3)))));
     ListNode* p = Solution().deleteDuplicates(head);
     while (p) {
         cout << p->val << endl;
