@@ -1,10 +1,10 @@
 #include <iostream>
 #include <queue>
-#include <climits>
-#include <cstdlib>
-#include <cstring>
 #include <stack>
-#include <map>
+#include<cstdlib>
+#include <climits>
+#include <cstring>
+#include<map>
 using namespace std;
 
 struct TreeNode
@@ -12,30 +12,34 @@ struct TreeNode
     int val;
     TreeNode *left;
     TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
 class Solution
 {
 public:
-    stack<int> result;
-    bool flag = true;
-    void inOrder(TreeNode* p) {
-        if (!p || !flag) {
-            return;
-        }
-        inOrder(p->left);
-        if (!result.empty() && result.top() >= p->val) {
-            flag = false;
-            return;
-        }
-        result.push(p->val);
-        inOrder(p->right);
+    inline int max(int a, int b) {
+        return a > b ? a : b;
     }
-    bool isValidBST(TreeNode *root)
+    int maxVal = INT_MIN;
+    int loop(TreeNode* p) {
+        if (!p) {
+            return 0;
+        }
+        int l = loop(p->left), r = loop(p->right), m = max(l, r);
+        int lv = (p->left ? p->left->val : INT_MIN), rv = (p->right ? p->right : INT_MAX);
+        if (p->val > lv && p->val < rv) {
+            maxVal = max(maxVal, m + p->val);
+            return m + p->val;
+        }
+        return 0;
+    }
+    int maxSumBST(TreeNode *root)
     {
-        inOrder(root);
-        return flag;
+        loop(root);
+        return maxVal;
     }
 };
 
@@ -76,10 +80,11 @@ TreeNode* inputTree()
     }
     return root;
 }
+
 int main()
 {
     TreeNode* root;
     root=inputTree();
-    bool res=Solution().isValidBST(root);
-    cout<<(res?"true":"false")<<endl;
+    int res=Solution().maxSumBST(root);
+    cout<<res;
 }

@@ -16,12 +16,14 @@ public:
         if (size == 0) {
             return 0;
         }
-        vector<int> dp(size + 1, 0);
-        dp[0] = nums[0];
-        int m = nums[0];
-        for (int i = 1; i < size; i++) {
-            dp[i] = max(nums[i], nums[i] + dp[i - 1]);
-            m = max(m, dp[i]);
+        int sum = nums[0], m = nums[0];
+        for (int i = 1; i < size; ++i) {
+            if (sum <= 0) {
+                sum = nums[i];
+            } else {
+                sum += nums[i];
+            }
+            m = max(m, sum);
         }
         return m;
     }

@@ -1,10 +1,9 @@
 #include <iostream>
 #include <queue>
-#include <climits>
-#include <cstdlib>
-#include <cstring>
 #include <stack>
-#include <map>
+#include<cstdlib>
+#include <cstring>
+#include<map>
 using namespace std;
 
 struct TreeNode
@@ -18,24 +17,23 @@ struct TreeNode
 class Solution
 {
 public:
-    stack<int> result;
-    bool flag = true;
+    int sum = 0;
     void inOrder(TreeNode* p) {
-        if (!p || !flag) {
-            return;
+        if (p) {
+            inOrder(p->right);
+            p->val += sum;
+            sum = p->val;
+            inOrder(p->left);
         }
-        inOrder(p->left);
-        if (!result.empty() && result.top() >= p->val) {
-            flag = false;
-            return;
-        }
-        result.push(p->val);
-        inOrder(p->right);
     }
-    bool isValidBST(TreeNode *root)
+
+    TreeNode *bstToGst(TreeNode *root)
     {
+        if (!root) {
+            return nullptr;
+        }
         inOrder(root);
-        return flag;
+        return root;
     }
 };
 
@@ -76,10 +74,33 @@ TreeNode* inputTree()
     }
     return root;
 }
+
+void printTree(TreeNode* root) {
+    if (root == NULL) {
+      return;
+    }
+    bool isFirst=true;
+    queue<TreeNode*> q;
+    q.push(root);
+    while(!q.empty()) {
+        TreeNode* node = q.front();
+        q.pop();
+        if (node == NULL) {
+          continue;
+        }
+        if (!isFirst)
+            cout<<",";
+        cout<<node->val;
+        isFirst=false;
+        q.push(node->left);
+        q.push(node->right);
+    }
+}
+
 int main()
 {
     TreeNode* root;
     root=inputTree();
-    bool res=Solution().isValidBST(root);
-    cout<<(res?"true":"false")<<endl;
+    TreeNode* res=Solution().bstToGst(root);
+    printTree(res);
 }
