@@ -8,7 +8,7 @@ class Solution {
 public:
     // TLE
     int cnt = 0;
-    void dfs(int cur, const int n) {
+    void dfs(int cur, const int& n) {
         if (cur == n) {
             cnt++;
             return;
