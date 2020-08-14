@@ -43,5 +43,20 @@ public:
 
 int main()
 {
+    int m, n;
+    cin >> m >> n;
+    vector<vector<char>> v(m, vector<char>(n));
+    for (int i = 0; i < m; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cin >> v[i][j];
+        }
+    }
+    Solution().solve(v);
+    for (int i = 0; i < m; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cout << v[i][j];
+        }
+        cout << endl;
+    }
     return 0;
 }
