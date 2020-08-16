@@ -22,28 +22,32 @@ public:
         } else if (!head->next || m == n) {
             return head;
         }
-        ListNode* p = head, *q, *r, *last;
-        for (int i = 1; i < m - 1; ++i) {
+        ListNode* root = new ListNode(0, head);
+        ListNode* p = root, *q, *r, *last;
+        for (int i = 0; i < m - 1; ++i) {
             p = p->next;
         }
         q = p->next;
         last = q;
-        for (int i = 0; i < n - m; ++i) {
+        p->next = nullptr;
+        for (int i = 0; i <= n - m; ++i) {
             r = q->next;
             q->next = p->next;
             p->next = q;
             q = r;
         }
         last->next = r;
-        return head;
+        return root->next;
     }
 };
 
 int main()
 {
-    ListNode* head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5,
-    new ListNode(6, new ListNode(7, new ListNode(8))))))));
-    ListNode* p = Solution().reverseBetween(head, 4, 7);
+//    ListNode* head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5,
+//                                                                                                  new ListNode(6, new ListNode(7, new ListNode(8))))))));
+//    ListNode* head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+    ListNode* head = new ListNode(1, new ListNode(2));
+    ListNode* p = Solution().reverseBetween(head, 1, 2);
     while (p) {
         cout << p->val << endl;
         p = p->next;
