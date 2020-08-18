@@ -52,7 +52,7 @@ public:
                 }
                 cur += to_string(v[i]);
             }
-            s.emplace_back(cur)''
+            s.emplace_back(cur);
         }
         return s;
     }
