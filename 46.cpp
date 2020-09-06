@@ -24,7 +24,7 @@ public:
         }
     }
 
-    vector<vector<int>> permute(vector<int>& nums) {
+    vector<vector<int>> permute1(vector<int>& nums) {
         size = nums.size();
         if (!size) {
             return {};
@@ -36,6 +36,30 @@ public:
             visit[i] = true;
             dfs(nums, cur, visit);
         }
+        return result;
+    }
+
+    // 方法2
+    void swap(vector<int>& nums, int a, int b) {
+        int temp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = temp;
+    }
+
+    void next_perm(vector<int>& nums, int beg, int end) {
+        if (beg == end) {
+            result.emplace_back(vector<int>(nums));
+            return;
+        }
+        for (int i = beg; i <= end; ++i) {
+            swap(nums, beg, i);
+            next_perm(nums, beg + 1, end);
+            swap(nums, beg, i);
+        }
+    }
+
+    vector<vector<int>> permute(vector<int>& nums) {
+        next_perm(nums, 0, nums.size() - 1);
         return result;
     }
 };
