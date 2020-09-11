@@ -8,30 +8,32 @@ class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
         int size = nums.size();
-        if (size == 0 || size == 1) {
-            return;
-        } else if (size == 2) {
-            reverse(nums.begin(), nums.end());
+        if (!size) {
             return;
         }
-        int p = size - 1, q = p - 1;
-        while (q >= 0 && nums[q] >= nums[p]) {
-            --q;
+        int i = size - 1;
+        while (i > 0 && nums[i] <= nums[i - 1]) {
+            --i;
         }
-        if (q < 0) {
+        if (!i) {
+            // 找不到逆序对，说明是最大值，重新排序即可
             sort(nums.begin(), nums.end());
             return;
         }
-        int temp = nums[p];
-        nums[p] = nums[q];
-        nums[q] = temp;
-        sort(nums.begin() + q + 1, nums.end() + p);
+        int j = i;
+        while (j + 1 < size && nums[j + 1] > nums[i - 1]) {
+            ++j;
+        }
+        int temp = nums[j];
+        nums[j] = nums[i - 1];
+        nums[i - 1] = temp;
+        reverse(nums.begin() + i, nums.end());
     }
 };
 
 int main()
 {
-    vector<int> v = {1, 2, 3, 4};
+    vector<int> v = {5, 1, 1};
     Solution().nextPermutation(v);
     for (int i : v) {
         cout << i << " ";
