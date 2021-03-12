@@ -1,0 +1,46 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# ignore build dir
+/out/*
+
+# ignore special file
+L[0-9]*.cpp
+
+# ignore shell command
+*.sh
+
+# ignore Java config and build file
+LeetCode-Java/.idea/*
+LeetCode-Java/target/*
+LeetCode-Java/*.iml
