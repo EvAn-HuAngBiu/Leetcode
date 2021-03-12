@@ -43,4 +43,5 @@ L[0-9]*.cpp
 # ignore Java config and build file
 LeetCode-Java/.idea/*
 LeetCode-Java/target/*
+LeetCode-Java/out/*
 LeetCode-Java/*.iml
