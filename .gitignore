@@ -32,10 +32,10 @@
 *.app
 
 # ignore build dir
-/out/*
+LeetCode-CPP/out/*
 
 # ignore special file
-L[0-9]*.cpp
+LeetCode-CPP/L[0-9]*.cpp
 
 # ignore shell command
 *.sh
