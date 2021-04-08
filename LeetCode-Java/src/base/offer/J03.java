@@ -1,4 +1,4 @@
-package base;
+package base.offer;
 
 import java.util.HashSet;
 import java.util.Set;

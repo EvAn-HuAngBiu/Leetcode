@@ -1,4 +1,4 @@
-package base;
+package base.offer;
 
 public class J07 {
     private TreeNode rebuild(int[] pre, int[] in, int preIdx, int inBeg, int inEnd) {

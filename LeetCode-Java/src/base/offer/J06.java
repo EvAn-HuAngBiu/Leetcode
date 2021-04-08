@@ -1,4 +1,4 @@
-package base;
+package base.offer;
 
 import java.util.Deque;
 import java.util.LinkedList;

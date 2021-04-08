@@ -1,4 +1,4 @@
-package base;
+package base.offer;
 
 /**
  * Project: LeetCode-Java
