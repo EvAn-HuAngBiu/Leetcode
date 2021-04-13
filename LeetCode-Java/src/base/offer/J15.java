@@ -1,0 +1,26 @@
+package base.offer;
+
+/**
+ * Project: LeetCode-Java
+ * File: J15
+ *
+ * @author evan
+ * @date 2021/4/13
+ */
+public class J15 {
+    public int hammingWeight(int n) {
+        int cnt = 0;
+        while (n != 0) {
+            if ((n & 1) == 1) {
+                ++cnt;
+            }
+            n >>>= 1;
+        }
+        return cnt;
+    }
+
+    public static void main(String[] args) {
+        J15 j = new J15();
+        System.out.println(j.hammingWeight(-1));
+    }
+}
