@@ -34,6 +34,15 @@ class ListNode {
         this.val = val;
         this.next = next;
     }
+
+    public void print() {
+        ListNode p = this;
+        while (p.next != null) {
+            System.out.print(p.val + "->>");
+            p = p.next;
+        }
+        System.out.println(p.val);
+    }
 }
 
 /**
