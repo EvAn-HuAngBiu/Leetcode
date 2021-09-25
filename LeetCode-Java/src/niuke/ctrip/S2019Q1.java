@@ -1,8 +1,6 @@
 package niuke.ctrip;
 
-import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Project: LeetCode-Java
