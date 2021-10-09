@@ -10,7 +10,7 @@ import base.fightoffer.ListNode;
  * @author evan
  * @date 2021/10/3
  */
-public class Q024 {
+public class Q24 {
     public ListNode reverseList(ListNode head) {
         ListNode root = new ListNode(-1), p = head, next;
         while (p != null) {
